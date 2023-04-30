@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<pokemon generation="1" pokedexNumber="1" classification="Seed Pokémon">
+	<name>Bulbasaur</name>
+	<type>grass</type>
+	<type>poison</type>
+	<hp>45</hp>
+	<attack>49</attack>
+	<defense>49</defense>
+	<speed>45</speed>
+	<sp_attack>65</sp_attack>
+	<sp_defense>65</sp_defense>
+	<height>
+		<m>0.7</m>
+	</height>
+	<weight>
+		<kg>6.9</kg>
+	</weight>
+	<abilities>
+		<ability>Overgrow</ability>
+		<ability>Chlorophyll</ability>
+	</abilities>
+</pokemon>
