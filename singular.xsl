@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<!-- Find all Pokemon that have only one type (that is, their "type 2" is empty) -->
+<!-- The result of this stylesheet should be 384 Pokemon -->
+
+<xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
+<xsl:template match="type[position() = last()]">
+  <xsl:value-of select="text()"/>
+</xsl:template>
 
 <!--
   These rules will generate text output rather than text; these are useful for more easily
@@ -10,11 +15,13 @@
   formatted HTML file.
   -->
 <xsl:template match="/pokedex">
-    <xsl:apply-templates select="" />
+Single type pokemon: <xsl:value-of select="" />:
+
+<xsl:apply-templates select="" />
 </xsl:template>
 
 <xsl:template match="pokemon">
-    <xsl:value-of select="" /> (<xsl:value-of select="" />): <xsl:value-of select="" /> | 
+    <xsl:value-of select="./name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:value-of select="./@classification" /> | <xsl:value-of select="./type" /> |
 </xsl:template>
 
 <!--
@@ -25,11 +32,13 @@
 <xsl:template match="/pokedex">
   <html>
   <body>
-  <h2>Generation One Pokemon</h2>
+  <h2>Single-type Pokemon</h2>
+  Count: <xsl:value-of select="" />
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name</th>
       <th>Classification</th>
+      <th>Type</th>
     </tr>
     <xsl:apply-templates select="" />
   </table>
@@ -39,8 +48,9 @@
 
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select="" />(<xsl:value-of select="" />)</td>
-      <td><xsl:value-of select="" /></td>
+      <td><xsl:value-of select="./name" />(<xsl:value-of select="@pokedexNumber" />)</td>
+      <td><xsl:value-of select="./@classification" /></td>
+      <td><xsl:value-of select="./type" /></td>
     </tr>
 </xsl:template>
 -->
