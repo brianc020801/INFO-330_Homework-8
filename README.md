@@ -43,7 +43,7 @@ Use XPath and XSLT to generate HTML files for various collections of Pokemon. Yo
 
 ## Details
 
-The `pokedex.xml` file has all of the pokemon.sqlite data in an XML format, wherein each Pokemon is described using the following schema:
+The `pokedex.xml` file has all of the `pokemon.sqlite` data in an XML format, wherein each Pokemon is described using the following schema:
 
 ```
 <pokemon pokedex="" classification="" generation="">
@@ -64,21 +64,21 @@ The `pokedex.xml` file has all of the pokemon.sqlite data in an XML format, wher
 </pokemon>
 ```
 
-You can see the Python code that created this XML file in `Extract.py`.
+You can see the Python code that created this XML file in `Extract.py`. (If you accidentally trash the XML Pokedex, you can always re-generate it by running `python3 Extract.py` in the same directory as the `pokemon.sqlite` file.)
 
-To run the XSLT stylesheets with xsltproc, you do it like so: `xsltproc stylesheet.xsl pokemon.xml`. Each stylesheet has two sets of rules, one which outputs plain text (such as `Oricorio (741): Dancing Pokémon`), and a second set that outputs HTML (so you can see it in a more pleasant setting). The first set is easier for debugging, the second set is generally what you want your final output to look like. For this homework, you are free to use either set.
+To run the XSLT stylesheets with xsltproc, you do it like so: `xsltproc stylesheet.xsl pokemon.xml`. Each stylesheet has two sets of rules, one which outputs plain text (such as `Oricorio (741): Dancing Pokémon`), and a second set that outputs HTML (so you can see it in a more pleasant setting). The first set is easier for debugging, the second set is generally what you want your final output to look like (which is to say, prettier than plain text). For this homework, you are free to use either set.
 
 ## Stories/Rubric
 
-Each point of the homework is in its own stylesheet. Your job is to replace the `XPATH-QUERY-GOES-HERE` with the appropriate XPath query to identify the XML in question.
+Each point of the homework is in its own stylesheet. Your job is to replace the `XPATH-QUERY-GOES-HERE` with the appropriate XPath query to identify the XML in question. It's recommended you do them in this order, but certainly not required.
 
 * (1 pt) genone.xsl: Find all generation-1 Pokemon
 * (1 pt) fire.xsl: Find all Pokemon that have a type of "fire"
 * (1 pt) elemental.xsl: Find all Pokemon that have a type of "fire", "water", "flying", or "ground"
 * (1 pt) singular.xsl: Find all Pokemon that have only one type
-* (1 pt) stats.xsl: Find all Pokemon with statistics that match the comments in the stylesheet.
+* (1 pt) stats.xsl: Find all Pokemon with attack, defense, or speed scores greater than 150.
 
 ## Extra Credit
 
-(5 pts) Create a Python program, `Import.py`, which will take an XML file as input, and insert new Pokemon into the `pokemon.sqlite` database. This will require you to open the file given as a command-line argument, use Python's XML libraries to parse the XML, then INSERT the resulting data into the database. An example Pokemon input file of that sort is given in the file `Bulbasaur.xml`.
+(5 pts) Create a Python program, `Import.py`, which will take an XML file as input, and insert new Pokemon into the `pokemon.sqlite` database. This will require you to open the file given as a command-line argument, use Python's XML libraries to parse the XML, then INSERT the resulting data into the database. An example Pokemon input file of that sort is given in the file `Bulbasaur.xml`. Make sure you don't import a duplicate of a Pokemon that is already there!
 
