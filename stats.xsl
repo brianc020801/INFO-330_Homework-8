@@ -21,20 +21,20 @@
      looking at in order to use the greater-than operator on the value.
      Use that same query with the XPath count() function to return the
      number of nodes that are returned by that query. -->
-<xsl:template match="/pokedex">
-    Strong attackers: <xsl:value-of select="" />
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+<!-- <xsl:template match="/pokedex">
+    Strong attackers: <xsl:value-of select="count(pokemon[attack > 150])  " />
+    <xsl:apply-templates select="pokemon[attack > 150]" />
     Strong defenders:
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="pokemon[defense > 150]" />
     Fast:
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
-</xsl:template>
+    <xsl:apply-templates select="pokemon[speed > 150]" />
+</xsl:template> -->
 
 <!-- In this template, select the name, pokedexNumber, and type in each of the value-of
      statements, respectively. -->
-<xsl:template match="pokemon">
-    <xsl:value-of select="XPATH-QUERY-GOES-HERE" /> (<xsl:value-of select="XPATH-QUERY-GOES-HERE" />): <xsl:apply-templates select="type" />
-</xsl:template>
+<!-- <xsl:template match="pokemon">
+    <xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:apply-templates select="type" />
+</xsl:template> -->
 
 <!--
   These rules will generate HTML output rather than text. This is to demonstrate
@@ -46,48 +46,51 @@
      looking at in order to use the greater-than operator on the value.
      Use that same query with the XPath count() function to return the
      number of nodes that are returned by that query. -->
-<!--
+
 <xsl:template match="/pokedex">
+  <xsl:variable name="highAtk" select="pokemon[attack > 150]" />
+  <xsl:variable name="highDef" select="pokemon[defense > 150]" />
+  <xsl:variable name="highSpd" select="pokemon[speed > 150]" />
   <html>
   <body>
-  <h2>Strong Attackers: <xsl:value-of select="XPATH-QUERY-GOES-HERE" /></h2>
+  <h2>Strong Attackers: <xsl:value-of select="count($highAtk)" /></h2>
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name</th>
       <th>Type</th>
     </tr>
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="$highAtk" />
   </table>
-  <h2>Strong Defenders: <xsl:value-of select="XPATH-QUERY-GOES-HERE" /></h2>
+  <h2>Strong Defenders: <xsl:value-of select="count($highDef)" /></h2>
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name</th>
       <th>Type</th>
     </tr>
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="$highDef" />
   </table>
-  <h2>Fast: <xsl:value-of select="XPATH-QUERY-GOES-HERE" /></h2>
+  <h2>Fast: <xsl:value-of select="count($highSpd)" /></h2>
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name</th>
       <th>Type</th>
     </tr>
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="$highSpd" />
   </table>
   </body>
   </html>
 </xsl:template>
--->
+
 
 <!-- In this template, select the name, pokedexNumber, and type in each of the value-of
      statements, respectively. -->
-<!--
+
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" /></td>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" /></td>
+      <td><xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />)</td>
+      <td><xsl:value-of select="type" /></td>
     </tr>
 </xsl:template>
--->
+
 
 </xsl:stylesheet>

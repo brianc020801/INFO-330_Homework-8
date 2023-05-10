@@ -19,21 +19,21 @@
   formatted HTML file.
   -->
 <!-- -->
-<xsl:template match="/pokedex">
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
-</xsl:template>
+<!-- <xsl:template match="/pokedex">
+    <xsl:apply-templates select="pokemon[type[contains(text(), 'fire')]]" />
+</xsl:template> -->
 
 <!-- Print the name (classification): types -->
-<xsl:template match="pokemon">
-    <xsl:value-of select="XPATH-QUERY-GOES-HERE" /> (<xsl:value-of select="XPATH-QUERY-GOES-HERE" />): <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" /><xsl:text>
+<!-- <xsl:template match="pokemon">
+    <xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:apply-templates select="type" /><xsl:text>
 </xsl:text>
-</xsl:template>
+</xsl:template> -->
 
 <!--
   These rules will generate HTML output rather than text. This is to demonstrate
   the power of using XSLT to create pretty output from XML sources.
   -->
-<!--
+
 <xsl:template match="/pokedex">
   <html>
   <body>
@@ -43,7 +43,7 @@
       <th>Name (Classification)</th>
       <th>Types</th>
     </tr>
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="pokemon[type[contains(text(), 'fire')]]" />
   </table>
   </body>
   </html>
@@ -51,10 +51,10 @@
 
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" />(<xsl:value-of select="XPATH-QUERY-GOES-HERE" />)</td>
-      <td><xsl:apply-templates select="XPATH-QUERY-GOES-HERE" /></td>
+      <td><xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />)</td>
+      <td><xsl:apply-templates select="type" /></td>
     </tr>
 </xsl:template>
--->
+
 
 </xsl:stylesheet>
